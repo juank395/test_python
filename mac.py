@@ -10,9 +10,10 @@ def get_random_mac():  #Este codigo genera un codigo MAC Aleatorio
 
 
 def change_mac(interface, new_mac):  #Con esta funcion se cambia el codigo MAC
-  subprocess.call(["ifconfig", interface, "down"], shell=True)
-  subprocess.call(["ifconfig", interface, "hw", "ether", new_mac], shell=True)
-  subprocess.call(["ifconfig", interface, "up"], shell=True)
+  subprocess.call(["ip", "link", "set", interface, "down"])
+  subprocess.call(["ip", "link", "set", interface, "address", new_mac])
+  subprocess.call(["ip", "link", "set", interface, "up"])
+
 
 
 if __name__ == "__main__":
